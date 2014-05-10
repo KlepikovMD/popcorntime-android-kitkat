@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dp.ws.popcorntime"
+    android:installLocation="auto"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="org.videolan.vlc.VLCApplication"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:logo="@drawable/ic_launcher"
+        android:theme="@style/Theme.VLC.NoTitleBar" >
+        <activity
+            android:name="dp.ws.time4popcorn.ui.HostActivity"
+            android:configChanges="orientation|screenLayout|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="org.videolan.vlc.gui.CompatErrorActivity" />
+        <activity
+            android:name="org.videolan.vlc.gui.SearchActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="org.tribler.triblersvod.gui.TorrentVideoPlayerActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="org.tribler.triblersvod.gui.TorrentSelectActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="sensorLandscape" >
+        </activity>
+        <activity android:name="org.tribler.triblersvod.gui.SetPreferenceActivity" />
+        <activity android:name="org.videolan.vlc.gui.AboutActivity" />
+        <activity android:name="org.videolan.vlc.gui.PreferencesActivity" />
+        <activity
+            android:name="org.videolan.vlc.gui.BrowserActivity"
+            android:label="@string/mediafiles"
+            android:theme="@style/Theme.VLC.Basic" />
+        <activity android:name="org.videolan.vlc.gui.DebugLogActivity" />
+        <activity android:name="org.videolan.vlc.gui.video.MediaInfoActivity" />
+        <activity
+            android:name="org.videolan.vlc.gui.video.VideoPlayerActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.VLC.Fullscreen" />
+
+        <service android:name="org.videolan.vlc.AudioService" />
+
+        <receiver android:name="org.videolan.vlc.PhoneStateReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="org.videolan.vlc.widget.VLCAppWidgetProvider"
+            android:exported="false"
+            android:label="VLC mini player" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/vlcwidget" />
+        </receiver>
+        <receiver android:name="org.videolan.vlc.RemoteControlClientReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
